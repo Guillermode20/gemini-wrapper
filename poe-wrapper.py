@@ -6,6 +6,11 @@ from typing import List, Optional, Dict, Any
 from gemini_webapi import GeminiClient
 from datetime import datetime
 import time
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = FastAPI()
 
@@ -54,8 +59,8 @@ class ChatResponse(BaseModel):
 
 class GeminiService:
     def __init__(self):
-        self.Secure_1PSID = ""
-        self.Secure_1PSIDTS = ""
+        self.Secure_1PSID = os.getenv("Secure_1PSID")
+        self.Secure_1PSIDTS = os.getenv("Secure_1PSIDTS")
         self.client = None
 
     async def init_client(self):
